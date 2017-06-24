@@ -48,8 +48,12 @@
     "babel": "inherit"
   },
   "dependencies": {
+    "has": "^1.0.1",
+    "invariant": "^2.2.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "redux": "^3.7.0"
+    "redux": "^3.7.0",
+    "redux-thunk": "^2.2.0",
+    "seamless-immutable": "^7.1.2"
   }
 }
