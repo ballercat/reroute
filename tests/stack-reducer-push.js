@@ -1,8 +1,7 @@
 import test from 'ava';
-import { changeURL } from '../src/actions';
 import { reduce } from '../src/stack-reducer';
 import context from '../src/context';
-import make, { push } from '../src/stack';
+import make from '../src/stack';
 
 test('push returns a new object', t => {
   const stack = make();
@@ -18,5 +17,4 @@ test('stack-reducer new context push', t => {
   t.is(stack.length, 1, 'adds to stack');
   t.is(stack[0].path, 'foo', 'sets correct path');
 });
-
 

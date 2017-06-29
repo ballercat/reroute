@@ -1,8 +1,7 @@
 import test from 'ava';
-import { changeURL } from '../src/actions';
 import { reduce } from '../src/stack-reducer';
 import context from '../src/context';
-import make, { push } from '../src/stack';
+import make from '../src/stack';
 
 test('stack-reducer pop', t => {
   let stack = make([
