@@ -7,7 +7,7 @@ const hasId = obj => has(obj, 'id');
 const hasPath = obj => has(obj, 'path');
 const isEqual = (l, r) => l === r;
 
-const compare = (left, right) =>
+const compare = (left = {}, right = {}) =>
   hasId(left) && hasId(right) ?
   isEqual(left.id, right.id) :
     hasPath(left) ?
@@ -26,7 +26,7 @@ export const push = (stack, context) => {
   return stack.concat(context);
 };
 
-export const pop = stack => stack.pop();
+export const pop = stack => stack.slice(0, -1);
 
 export const find = (stack, context) => {
   const length = stack.length;
@@ -48,8 +48,8 @@ export const previous = (stack, context) => {
   return context ? compare(context, previous) : previous;
 };
 
-const make = () => {
-  return Immutable([]);
+const make = (contents = []) => {
+  return Immutable(contents);
 };
 
 export default make;
