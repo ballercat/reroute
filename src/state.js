@@ -1,8 +1,8 @@
 import Immutable from "seamless-immutable";
 
 const __INITIAL__ = "__INITIAL__";
-// Date.now() is not sufficient for some scenarios when the same time can be
-// generated for two states, id and tiem created are kept separate.
+// Date.now() is not sufficient when two states are generated together, id and
+// tiem created are kept separate.
 let __CONTEXT_COUNTER__ = 0;
 
 export const copy = (state, meta = { id: __CONTEXT_COUNTER__++ }) =>

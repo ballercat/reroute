@@ -1,10 +1,10 @@
-import Immutable from 'seamless-immutable';
-import { invalidStateError } from './errors';
-import invariant from 'invariant';
-import has from 'has';
+import Immutable from "seamless-immutable";
+import { invalidStateError } from "./errors";
+import invariant from "invariant";
+import has from "has";
 
-const hasId = obj => has(obj, 'id');
-const hasPath = obj => has(obj, 'path');
+const hasId = obj => has(obj, "id");
+const hasPath = obj => has(obj, "path");
 const isEqual = (l, r) => l === r;
 const matchId = (l, r) => isEqual(l.id, r.id);
 const matchTimestamp = (l, r) => isEqual(l.timestamp, r.timestamp);
@@ -20,16 +20,12 @@ const compare = (left = {}, right = {}) => {
   }
 
   return false;
-}
+};
 
 export const push = (stack, state) => {
-  if (find(stack, state))
-    return stack;
+  if (find(stack, state)) return stack;
 
-  invariant(
-    hasId(state) || hasPath(state),
-    invalidStateError()
-  );
+  invariant(hasId(state) || hasPath(state), invalidStateError());
 
   return stack.concat(state);
 };
@@ -39,8 +35,7 @@ export const pop = stack => stack.slice(0, -1);
 export const find = (stack, state) => {
   const length = stack.length;
   for (let i = length - 1; i > -1; i--) {
-    if (compare(state, stack[i]))
-      return stack[i];
+    if (compare(state, stack[i])) return stack[i];
   }
 
   return null;
@@ -61,4 +56,3 @@ const make = (states = []) => {
 };
 
 export default make;
-
