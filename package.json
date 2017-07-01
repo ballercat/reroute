@@ -23,6 +23,7 @@
   "homepage": "https://github.com/ballercat/reroute#readme",
   "devDependencies": {
     "ava": "^0.19.1",
+    "babel-eslint": "^7.2.3",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-runtime": "^6.23.0",
