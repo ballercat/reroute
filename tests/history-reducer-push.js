@@ -1,7 +1,7 @@
 import test from 'ava';
-import { reduce } from '../src/stack-reducer';
+import { reduce } from '../src/history-stack-reducer';
 import context from '../src/context';
-import make from '../src/stack';
+import make from '../src/history-stack';
 
 test('push returns a new object', t => {
   const stack = make();

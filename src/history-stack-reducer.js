@@ -1,4 +1,4 @@
-import make, { push, pop, find, previous } from './stack';
+import make, { push, pop, find, previous } from './history-stack';
 import context, { copy } from './context';
 
 const handlePush = (stack, action) => {

@@ -1,7 +1,7 @@
 import test from 'ava';
-import { reduce } from '../src/stack-reducer';
+import { reduce } from '../src/history-stack-reducer';
 import context from '../src/context';
-import make from '../src/stack';
+import make from '../src/history-stack';
 
 test('stack-reducer copy context push', t => {
   var stack  = make([context({ path: 'foo' })]);
