@@ -5,15 +5,22 @@ const __INITIAL__ = '__INITIAL__';
 // Instead the time created and identifier are sepparated
 let __CONTEXT_COUNTER__ = 0;
 
-export const copy = context => context.merge({ id: Date.now() });
+export const copy = (state, meta = { id: __CONTEXT_COUNTER__++ }) =>
+  state.merge(
+    meta,
+    {
+      timestamp: Date.now()
+    }
+  );
 
 const state = (meta = {
   path: __INITIAL__
-}) =>
+}, data = {}) =>
   Immutable({
     ...meta,
+    data,
     id: (__CONTEXT_COUNTER__++),
-    created: Date.now()
+    timestamp: Date.now()
   });
 
 

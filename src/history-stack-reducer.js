@@ -2,25 +2,28 @@ import make, { push, pop, find, previous } from './history-stack';
 import state, { copy } from './state';
 
 // Handle push state
-const handlePush = (stack, action) => {
-  const found = find(stack, action);
-  return found ? push(stack, copy(found)) : push(stack, state(action));
+const handlePush = (stack, meta) => {
+  const found = find(stack, meta);
+  if (found)
+    return push(stack, copy(found, meta));
+
+  return push(stack, state(meta));
 };
 
 // Handle pop state
-const handlePop = (stack, action) => {
-  const found = find(stack, action);
+const handlePop = (stack, meta) => {
+  const found = find(stack, meta);
   if (found && previous(stack, found))
     return pop(stack);
   return stack;
 };
 
-export const reduce = (stack = make(), { type, ...rest }) => {
+export const reduce = (stack = make(), { type, ...meta }) => {
   switch(type) {
     case 'PUSH':
-      return handlePush(stack, rest);
+      return handlePush(stack, meta);
     case 'POP':
-      return handlePop(stack, rest);
+      return handlePop(stack, meta);
     default:
       return stack;
   };

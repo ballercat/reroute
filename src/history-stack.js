@@ -6,13 +6,21 @@ import has from 'has';
 const hasId = obj => has(obj, 'id');
 const hasPath = obj => has(obj, 'path');
 const isEqual = (l, r) => l === r;
+const matchId = (l, r) => isEqual(l.id, r.id);
+const matchTimestamp = (l, r) => isEqual(l.timestamp, r.timestamp);
+const matchPath = (l, r) => isEqual(l.path, r.path);
 
-const compare = (left = {}, right = {}) =>
-  hasId(left) && hasId(right) ?
-  isEqual(left.id, right.id) :
-    hasPath(left) ?
-    isEqual(left.path, right.path) :
-    false;
+const compare = (left = {}, right = {}) => {
+  if (hasId(left) && hasId(right)) {
+    return matchId(left, right) && matchTimestamp(left, right);
+  }
+
+  if (hasPath(left)) {
+    return matchPath(left, right) && matchTimestamp(left, right);
+  }
+
+  return false;
+}
 
 export const push = (stack, state) => {
   if (find(stack, state))

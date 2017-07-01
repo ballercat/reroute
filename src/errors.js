@@ -1,2 +1,1 @@
-export const invalidStateError = () =>
-  `A state must have either id or path`;
+export const invalidStateError = () => `State is missing both path and id`;
