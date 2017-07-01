@@ -8,7 +8,8 @@ test('stack-reducer pop', t => {
     context({ path: 'foo' }),
     context({ path: 'bar' })
   ]);
-  stack = reduce(stack, { type: 'POP', id: stack[1].id });
+  // a popstate event will fire with the previous state in the stack
+  stack = reduce(stack, { type: 'POP', ...stack[0] });
   t.is(stack.length, 1);
 });
 
