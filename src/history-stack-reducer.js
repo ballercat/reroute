@@ -1,10 +1,10 @@
 import make, { push, pop, find, previous } from './history-stack';
-import context, { copy } from './context';
+import state, { copy } from './state';
 
 // Handle push state
 const handlePush = (stack, action) => {
   const found = find(stack, action);
-  return found ? push(stack, copy(found)) : push(stack, context(action));
+  return found ? push(stack, copy(found)) : push(stack, state(action));
 };
 
 // Handle pop state

@@ -7,7 +7,7 @@ let __CONTEXT_COUNTER__ = 0;
 
 export const copy = context => context.merge({ id: Date.now() });
 
-const context = (meta = {
+const state = (meta = {
   path: __INITIAL__
 }) =>
   Immutable({
@@ -17,5 +17,5 @@ const context = (meta = {
   });
 
 
-export default context;
+export default state;
 
