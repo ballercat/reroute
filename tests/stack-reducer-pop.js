@@ -8,7 +8,6 @@ test('stack-reducer pop', t => {
     context({ path: 'foo' }),
     context({ path: 'bar' })
   ]);
-
   stack = reduce(stack, { type: 'POP', id: stack[1].id });
   t.is(stack.length, 1);
 });
