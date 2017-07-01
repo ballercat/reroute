@@ -1,2 +1,2 @@
-export const invalidContextError = () =>
-  `A context must have either id or path`;
+export const invalidStateError = () =>
+  `A state must have either id or path`;

@@ -1,5 +1,5 @@
 import Immutable from 'seamless-immutable';
-import { invalidContextError } from './errors';
+import { invalidStateError } from './errors';
 import invariant from 'invariant';
 import has from 'has';
 
@@ -14,42 +14,42 @@ const compare = (left = {}, right = {}) =>
     isEqual(left.path, right.path) :
     false;
 
-export const push = (stack, context) => {
-  if (find(stack, context))
+export const push = (stack, state) => {
+  if (find(stack, state))
     return stack;
 
   invariant(
-    hasId(context) || hasPath(context),
-    invalidContextError()
+    hasId(state) || hasPath(state),
+    invalidStateError()
   );
 
-  return stack.concat(context);
+  return stack.concat(state);
 };
 
 export const pop = stack => stack.slice(0, -1);
 
-export const find = (stack, context) => {
+export const find = (stack, state) => {
   const length = stack.length;
   for (let i = length - 1; i > -1; i--) {
-    if (compare(context, stack[i]))
+    if (compare(state, stack[i]))
       return stack[i];
   }
 
   return null;
 };
 
-export const current = (stack, context) => {
+export const current = (stack, state) => {
   const last = stack.slice(-1)[0];
-  return context ? compare(context, last) : last;
+  return state ? compare(state, last) : last;
 };
 
-export const previous = (stack, context) => {
+export const previous = (stack, state) => {
   const previous = stack.slice(-2, -1)[0];
-  return context ? compare(context, previous) : previous;
+  return state ? compare(state, previous) : previous;
 };
 
-const make = (contents = []) => {
-  return Immutable(contents);
+const make = (states = []) => {
+  return Immutable(states);
 };
 
 export default make;
